@@ -56,7 +56,7 @@ The desired outcome of the game.
 |   Sunday	    |   	    |   	|   	|
 |   Monday	    |   	    |   	|   	|
 |   Tuesday	    |   	    |   	|   	|
-|   Wednesdau	|   	    |   	|   	|
+|   Wednesday	|   	    |   	|   	|
 |   Thursday	|   	    |   	|   	|
 
 **PRESENTATION IS FRIDAY** 19 July 2024. 
