@@ -50,13 +50,13 @@ The desired outcome of the game.
 
 
 
-| Day  	        |  Tasks	|  Blockers 	|   Notes	|
-|---	        |---	    |---	|---	|
-|   Saturday	|   	    |   	|   	|
-|   Sunday	    |   	    |   	|   	|
-|   Monday	    |   	    |   	|   	|
-|   Tuesday	    |   	    |   	|   	|
-|   Wednesday	|   	    |   	|   	|
-|   Thursday	|   	    |   	|   	|
+| Day  	        |  Tasks	    |  Blockers 	|   Notes	|
+|---	        |---	        |---	|---	|
+|   Saturday	|   Paralax	    |   	|   	|
+|   Sunday	    |   	        |   	|   	|
+|   Monday	    |   	        |   	|   	|
+|   Tuesday	    |   	        |   	|   	|
+|   Wednesday	|   	        |   	|   	|
+|   Thursday	|   	        |      	|   	|
 
 **PRESENTATION IS FRIDAY** 19 July 2024. 
