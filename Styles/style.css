@@ -1,0 +1,14 @@
+body {
+    background: rgb(28, 2, 2);
+    margin: 0; /* Ensures there is no default margin interfering with full centering */
+    height: 100vh; /* Full viewport height */
+    display: flex; /* Using flexbox for centering */
+    align-items: center; /* Aligns children vertically center */
+    justify-content: center; /* Aligns children horizontally center */
+    
+}
+#canvas {
+    border: 3px solid white;
+    width: 800px;
+    height: 700px;
+}
