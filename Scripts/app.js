@@ -2,25 +2,40 @@ class Bird {
     constructor() {
         this.x = 150;
         this.y = 300;
-        this.width = 34;  // Adjust based on your image's aspect ratio
-        this.height = 24; // Adjust based on your image's aspect ratio      
-        this.gravity = 0.5; 
-        this.lift = -28;
+        this.width = 41;  // Each sprite's frame width
+        this.height = 30; // Each sprite's frame height
+        this.gravity = 0.5;
+        this.lift = -28; // Lift of the bird
         this.velocity = 0;
+        this.frameIndex = 0;       // Start at the first frame
+        this.tickCount = 0;        // Counter to manage animation timing
+        this.ticksPerFrame = 8;    // Ticks per frame for controlling speed
+        this.numFrames = 8;        // Total frames in the sprite sheet
         this.image = new Image();
-        this.image.src = '/Assets/A1.png';  
+        this.image.src = '/Assets/Sprite/spritesheet.png';
     }
 
     update() {
+        this.tickCount++;
+        if (this.tickCount > this.ticksPerFrame) {
+            this.tickCount = 0;
+            // Cycle through frames
+            this.frameIndex = (this.frameIndex + 1) % this.numFrames;
+        }
+
+        this.applyPhysics();
+    }
+
+    applyPhysics() {
         this.velocity += this.gravity;
-        this.velocity *= 0.7; // air resistance
+        this.velocity *= 0.7; // Simulating air resistance
         this.y += this.velocity;
 
+        // Boundary checks
         if (this.y > CANVAS_HEIGHT - this.height) {
             this.y = CANVAS_HEIGHT - this.height;
             this.velocity = 0;
         }
-
         if (this.y < 0) {
             this.y = 0;
             this.velocity = 0;
@@ -28,19 +43,25 @@ class Bird {
     }
 
     draw() {
-        ctx.drawImage(this.image, this.x, this.y, this.width, this.height);
+        let frameX = this.width * this.frameIndex;
+        ctx.drawImage(this.image, frameX, 0, this.width, this.height, this.x, this.y, this.width, this.height);
     }
 
     jump() {
         this.velocity += this.lift;
+        this.frameIndex = 0;  // Reset to first animation in the spritesheet
     }
 }
 
 const bird = new Bird();
 
-document.addEventListener('keydown', function(event) {
+document.addEventListener('keydown', function (event) {
     if (event.code === 'Space') {
         bird.jump();
+        flySound.play();
+        setTimeout(() => {
+            swooshSound.play();
+        }, 250);
     }
 });
 
@@ -50,19 +71,22 @@ const pipeSouth = new Image();
 pipeSouth.src = '/Assets/pipeSouth.png';
 
 //Get the sound for successful pass of the pipes
-const passSound = new Audio('/Assets/Audio/point.mp3');
-const dieSound = new Audio('/Assets/Audio/die.mp3');
+const passSound = new Audio('/Assets/Audio/sfx_point.wav');
+const hitSound = new Audio('/Assets/Audio/sfx_hit.wav');
+const flySound = new Audio('/Assets/Audio/sfx_wing.wav');
+const swooshSound = new Audio('/Assets/Audio/sfx_swooshing.wav');
+const dieSound = new Audio('/Assets/Audio/sfx_die.wav');
 
 //Give the function to play the point sound
-function playSound(){
+function playSound() {
     passSound.play();
 }
 
-let score = 0;  // This is global 
+let score = 0;  // This is global for tracking scores
 
 function updateScoreButton() {
     const scoreButton = document.getElementById('scoreButton');
-    scoreButton.textContent = 'Score: ' + score/2;
+    scoreButton.textContent = 'Score: ' + score / 2; //score has to be divided by 2 because bird passes two towers
 }
 
 class Pipe {
@@ -80,7 +104,8 @@ class Pipe {
             score++;
             updateScoreButton();
             playSound();
-    }}
+        }
+    }
 
     draw() {
         ctx.drawImage(this.image, this.x, this.y, this.width, this.height);
@@ -100,7 +125,7 @@ class Pipe {
 let pipes = [];
 let pipeWidth = 52; // Adjust based on your image's aspect ratio
 let pipeHeight = 160; // Adjust based on your image's aspect ratio
-let gap = 160; // Gap between the top and bottom pipes
+let gap = 170; // Gap between the top and bottom pipes
 let pipeInterval = 2700; // Interval in milliseconds to push new pipes
 let lastPipeTime = 0;
 
@@ -124,9 +149,14 @@ function checkCollisions() {
     for (let pipe of pipes) {
         if (pipe.collidesWith(bird)) {
             console.log("Collision Detected! Restarting game...");
-            
-            dieSound.play();
-            
+
+            //Die sound is played after 600 milliseconds
+            setTimeout(() => {
+                dieSound.play();
+            }, 600);
+            //Hit the pipe play sound
+            hitSound.play();
+
             // Reset bird's position and velocity
             bird.y = 300;
             bird.velocity = 0;
