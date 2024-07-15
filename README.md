@@ -53,8 +53,8 @@ The desired outcome of the game.
 | Day  	        |  Tasks	    |  Blockers 	|   Notes	|
 |---	        |---	        |---	|---	|
 |   Saturday	|   Paralax	    |   	|   	|
-|   Sunday	    |   	        |   	|   	|
-|   Monday	    |   	        |   	|   	|
+|   Sunday	    |   Sounds      |   	|   	|
+|   Monday	    |   Start/Stop  | ?  	|   	|
 |   Tuesday	    |   	        |   	|   	|
 |   Wednesday	|   	        |   	|   	|
 |   Thursday	|   	        |      	|   	|
