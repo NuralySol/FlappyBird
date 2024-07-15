@@ -29,7 +29,7 @@ My game is a FlabbyBird Project, a hit with all ages and demographics, with two 
 
 The desired outcome of the game.
 
-![image info](./Assets/FlappyBird%20WireFrame.jpg)
+![image info](./WireFrame/GameWireFrame.jpg)
 
 ## Playing the game.
 
