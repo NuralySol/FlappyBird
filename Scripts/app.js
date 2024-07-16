@@ -86,7 +86,6 @@ let score = 0;  // This is global for tracking scores + highScore which is stati
 let highScore = 0;
 let deathRestart = "";
 
-
 function updateScoreButton() {
     const scoreButton = document.getElementById('scoreButton');
     scoreButton.textContent = 'Score: ' + score / 2; //score has to be divided by 2 because bird passes two towers

@@ -30,7 +30,7 @@ backgroundLayer11.src = '/Assets/Layers/layer11.png';
 
 
 class Layer {
-    constructor(image, speedModifier, isPipe = false) {
+    constructor(image, speedModifier) {
         this.x = 0;
         this.y = 0;
         this.width = 2400;
