@@ -198,10 +198,10 @@ function checkCollisions() {
             lastPipeTime = Date.now();
 
             // Restart the animation
-            requestAnimationFrame(animate);
+            setTimeout(() => {
+                requestAnimationFrame(animate);  // Restart the animation
+            }, 1000);
             return true;
-
-            
         }
     }
     return false;
