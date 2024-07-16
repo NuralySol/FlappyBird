@@ -93,7 +93,7 @@ function updateScoreButton() {
 
 function updateHighScoreButton () {
     const highScoreButton =  document.getElementById('highestButton'); //track the highest score function
-    highScoreButton.textContent = 'High Score ' + highScore / 2;
+    highScoreButton.textContent = 'High Score: ' + highScore / 2;
 }
 
 class Pipe {
