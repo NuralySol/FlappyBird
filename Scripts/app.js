@@ -83,10 +83,17 @@ function playSound() {
 }
 
 let score = 0;  // This is global for tracking scores
+let highScore = 0;
+
 
 function updateScoreButton() {
     const scoreButton = document.getElementById('scoreButton');
     scoreButton.textContent = 'Score: ' + score / 2; //score has to be divided by 2 because bird passes two towers
+}
+
+function updateHighScoreButton () {
+    const highScoreButton =  document.getElementById('highestButton'); //track the highest score function
+    highScoreButton.textContent = 'High Score ' + highScore / 2;
 }
 
 class Pipe {
@@ -99,10 +106,15 @@ class Pipe {
     }
 
     update() {
-        this.x -= gameSpeed; if (!this.passed && this.x + this.width < bird.x) {
+        this.x -= gameSpeed;
+        if (!this.passed && this.x + this.width < bird.x) {
             this.passed = true;
             score++;
+            if (score > highScore) {
+                highScore = Math.floor(highScore + 1);  // Using Math.floor to ensure it's an integer
+            }
             updateScoreButton();
+            updateHighScoreButton();
             playSound();
         }
     }
@@ -174,6 +186,8 @@ function checkCollisions() {
             // Restart the animation
             requestAnimationFrame(animate);
             return true;
+
+            
         }
     }
     return false;
