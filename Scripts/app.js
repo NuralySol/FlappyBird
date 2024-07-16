@@ -2,10 +2,10 @@ class Bird {
     constructor() {
         this.x = 150;
         this.y = 300;
-        this.width = 41;  // Each sprite's frame width
-        this.height = 30; // Each sprite's frame height
+        this.width = 41;           // Each sprite's frame width
+        this.height = 30;          // Each sprite's frame height
         this.gravity = 0.5;
-        this.lift = -28; // Lift of the bird
+        this.lift = -28;           // Lift of the bird
         this.velocity = 0;
         this.frameIndex = 0;       // Start at the first frame
         this.tickCount = 0;        // Counter to manage animation timing
@@ -82,8 +82,9 @@ function playSound() {
     passSound.play();
 }
 
-let score = 0;  // This is global for tracking scores
+let score = 0;  // This is global for tracking scores + highScore which is static
 let highScore = 0;
+let deathRestart = "";
 
 
 function updateScoreButton() {
@@ -93,7 +94,7 @@ function updateScoreButton() {
 
 function updateHighScoreButton () {
     const highScoreButton =  document.getElementById('highestButton'); //track the highest score function
-    highScoreButton.textContent = 'High Score: ' + highScore / 2;
+    highScoreButton.textContent = 'Highest Score: ' + highScore / 2;
 }
 
 class Pipe {
@@ -110,7 +111,7 @@ class Pipe {
         if (!this.passed && this.x + this.width < bird.x) {
             this.passed = true;
             score++;
-            if (score > highScore) {
+            if (score > highScore) {                   
                 highScore = Math.floor(highScore + 1);  // Using Math.floor to ensure it's an integer
             }
             updateScoreButton();
@@ -156,12 +157,25 @@ function managePipes() {
         pipe.draw();
     });
 }
+function displayDeathMessage() {
+    const deathMessageButton = document.getElementById('youHaveDied');
+    deathMessageButton.textContent = "Dead! Restarting";
+    deathMessageButton.style.display = 'block';  // Make the button visible
+
+    // Optionally, hide the button after some time and restart the game
+    setTimeout(() => {
+        deathMessageButton.style.display = 'none';  // Hide the button
+        resetGameAndRestart();  // Call a function to reset the game state and restart the animation
+    }, 1700); // Display message for 1700 milliseconds 
+}
+
 
 function checkCollisions() {
     for (let pipe of pipes) {
         if (pipe.collidesWith(bird)) {
-            console.log("Collision Detected! Restarting game...");
-
+            console.log("You Have Died. Restarting...")
+            //Death Message
+            displayDeathMessage();
             //Die sound is played after 600 milliseconds
             setTimeout(() => {
                 dieSound.play();
