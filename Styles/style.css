@@ -9,7 +9,7 @@ body {
     background: rgb(1, 84, 53);
     margin: 0;
     /* Ensures there is no default margin interfering with full centering */
-    height: 81dvh;
+    height: 100dvh;
     /* Full viewport height */
     background-image: url(/Assets/CityForrest.png);
     background-size: 72%;
@@ -18,7 +18,7 @@ body {
 
 #canvas {
     display: flex;
-    border: black 10px solid rgb(0, 0, 0);
+    border: black 3px solid rgb(0, 0, 0);
     width: 800px;
     height: 700px;
 }
@@ -35,7 +35,7 @@ button {
     color: yellow;
     cursor: pointer;
     font-family: "Akzidenz Grotesk BQ Medium", -apple-system, BlinkMacSystemFont, sans-serif;
-    font-size: 16px;
+    font-size: 18px;
     font-weight: 400;
     outline: none;
     outline: 0;
@@ -64,6 +64,10 @@ button:hover {
     font-size: 18px;
     background-color: rgb(19, 231, 132);
     border-color: black;
+    font-family: "Akzidenz Grotesk BQ Medium", -apple-system, BlinkMacSystemFont, sans-serif;
+    font-weight: 400;
+    text-align: center;
+    border: 1px solid #13aa52;
 }
 
 #highestButton {
@@ -71,6 +75,31 @@ button:hover {
     font-size: 18px;
     background-color: rgb(19, 231, 132);
     border-color: black;
+    font-family: "Akzidenz Grotesk BQ Medium", -apple-system, BlinkMacSystemFont, sans-serif;
+    font-weight: 400;
+    text-align: center;
+    border: 1px solid #13aa52;
 }
 
+#youHaveDied {
+    background-color: #13aa52;
+    border: 1px solid #13aa52;
+    border-radius: 4px;
+    box-shadow: rgba(0, 0, 0, .1) 0 2px 4px 0;
+    box-sizing: rgb(0, 0, 0)order-box;
+    color: rgb(9, 9, 0);
+    cursor: pointer;
+    font-family: "Akzidenz Grotesk BQ Medium", -apple-system, BlinkMacSystemFont, sans-serif;
+    font-size: 18px;
+    font-weight: 400;
+    outline: none;
+    outline: 0;
+    padding: 10px 25px;
+    text-align: center;
+    transform: translateY(0);
+    transition: transform 150ms, box-shadow 150ms;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+}
 
