@@ -54,17 +54,17 @@ class Layer {
     }
 }
 
-const layer1 = new Layer(backgroundLayer1, 0.1);
+const layer1 = new Layer(backgroundLayer1, 0.2);
 const layer2 = new Layer(backgroundLayer2, 0.2);
-const layer3 = new Layer(backgroundLayer3, 0.3);
+const layer3 = new Layer(backgroundLayer3, 0.4);
 const layer4 = new Layer(backgroundLayer4, 0.4);
 const layer5 = new Layer(backgroundLayer5, 0.5);
 const layer6 = new Layer(backgroundLayer6, 0.6);
-const layer7 = new Layer(backgroundLayer7, 0.7);
-const layer8 = new Layer(backgroundLayer8, 0.8);
-const layer9 = new Layer(backgroundLayer9, 0.9);
-const layer10 = new Layer(backgroundLayer10, 1);
-const layer11 = new Layer(backgroundLayer11, 1.1);
+const layer7 = new Layer(backgroundLayer7, 0.8);
+const layer8 = new Layer(backgroundLayer8, 1.2);
+const layer9 = new Layer(backgroundLayer9, 1);
+const layer10 = new Layer(backgroundLayer10, 1.8);
+const layer11 = new Layer(backgroundLayer11, 2);
 
 const gameObject = [layer1, layer2, layer3, layer4, layer5, layer6,
     layer7, layer8, layer9, layer10, layer11];
