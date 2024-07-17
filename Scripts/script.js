@@ -1,4 +1,5 @@
-// This is paralax
+
+
 const canvas = document.getElementById('canvas1');
 const ctx = canvas.getContext('2d');
 const CANVAS_WIDTH = canvas.width = 800;
@@ -67,21 +68,5 @@ const layer11 = new Layer(backgroundLayer11, 1.1);
 
 const gameObject = [layer1, layer2, layer3, layer4, layer5, layer6,
     layer7, layer8, layer9, layer10, layer11];
-// Add event listener to the start button
-document.getElementById('button').addEventListener('click', function() {
-    requestAnimationFrame(animate);
-});
-
-function animate() {
-    ctx.clearRect(0, 0, CANVAS_WIDTH, CANVAS_HEIGHT);
-    gameObject.forEach(object => {
-        object.update();
-        object.draw();
-    });
-    
-    requestAnimationFrame(animate);
-};
-
-animate();
 
 

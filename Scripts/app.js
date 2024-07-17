@@ -1,3 +1,76 @@
+document.addEventListener('DOMContentLoaded', function() {
+    // Remove the outer keydown listener
+    document.addEventListener('keydown', function(event) {
+        if (event.code === 'Space') {
+            if (!animationActive) return; // Prevent jumping if the game hasn't started
+            bird.jump();
+            flySound.play();
+            setTimeout(() => {
+                swooshSound.play();
+            }, 250);
+            event.preventDefault();
+        }
+    });
+
+    // Start button event listener
+    document.getElementById('startButton').addEventListener('click', function() {
+        if (!animationActive) {
+            resetGameAndRestart();
+        }
+    });
+});
+
+let animationActive = false;
+let animationFrameId;
+
+function resetGameAndRestart() {
+    if (animationFrameId) {
+        cancelAnimationFrame(animationFrameId);
+    }
+    // Reset the bird's properties
+    bird.y = 300;
+    bird.velocity = 0;
+    bird.gravity = 0.5; // Reset to default if it changes in the game
+    bird.lift = -34; // Reset to default if it changes in the game
+
+    // Reset game speed if it's a global modifier that changes
+    gameSpeed = 1; // Assuming you have a gameSpeed variable that might change
+
+    // Clear and reset pipes, scores, etc.
+    pipes = [];
+    score = 0;
+    lastPipeTime = Date.now();
+    ctx.clearRect(0, 0, CANVAS_WIDTH, CANVAS_HEIGHT);
+    animationActive = true;
+    animationFrameId = requestAnimationFrame(animate);
+}
+
+function resetTheBirdOnGroundCollision() {
+    if (animationFrameId) {
+        cancelAnimationFrame(animationFrameId);  // Cancel any ongoing animation frame
+    }
+
+    // Reset bird's properties
+    bird.y = 300;
+    bird.velocity = 0;
+    bird.gravity = 0.35;
+    bird.lift = -44;
+
+    // Reset other game state variables
+    gameSpeed = 1*1.15;
+    pipes = [];
+    score = 0;
+    lastPipeTime = Date.now();
+    ctx.clearRect(0, 0, CANVAS_WIDTH, CANVAS_HEIGHT);
+
+    // Log reset action
+    console.log("Game reset because the bird hit the ground.");
+
+    // Reinitialize the game
+    animationActive = true;
+    animationFrameId = requestAnimationFrame(animate);
+}
+
 class Bird {
     constructor() {
         this.x = 150;
@@ -5,7 +78,7 @@ class Bird {
         this.width = 41;           // Each sprite's frame width
         this.height = 30;          // Each sprite's frame height
         this.gravity = 0.5;
-        this.lift = -28;           // Lift of the bird
+        this.lift = -32;           // Lift of the bird
         this.velocity = 0;
         this.frameIndex = 0;       // Start at the first frame
         this.tickCount = 0;        // Counter to manage animation timing
@@ -22,7 +95,6 @@ class Bird {
             // Cycle through frames
             this.frameIndex = (this.frameIndex + 1) % this.numFrames;
         }
-
         this.applyPhysics();
     }
 
@@ -31,10 +103,12 @@ class Bird {
         this.velocity *= 0.7; // Simulating air resistance
         this.y += this.velocity;
 
-        // Boundary checks
+        
+        // Boundary checks 
         if (this.y > CANVAS_HEIGHT - this.height) {
             this.y = CANVAS_HEIGHT - this.height;
             this.velocity = 0;
+            this.resetOnGroundCollision();
         }
         if (this.y < 0) {
             this.y = 0;
@@ -51,19 +125,13 @@ class Bird {
         this.velocity += this.lift;
         this.frameIndex = 0;  // Reset to first animation in the spritesheet
     }
+    resetOnGroundCollision = () => { // Arrow function to reset the game
+        console.log("Bird has hit the bottom. Resetting game...");
+        resetTheBirdOnGroundCollision();
+    }
 }
 
 const bird = new Bird();
-
-document.addEventListener('keydown', function (event) {
-    if (event.code === 'Space') {
-        bird.jump();
-        flySound.play();
-        setTimeout(() => {
-            swooshSound.play();
-        }, 250);
-    }
-});
 
 const pipeNorth = new Image();
 pipeNorth.src = '/Assets/pipeNorth.png';
@@ -168,6 +236,18 @@ function displayDeathMessage() {
     }, 1700); // Display message for 1700 milliseconds 
 }
 
+// You might ask why I need two functions for bird collission so that it does not mess up the spee
+// Otherwise I found Out that if there is only one function for pipe collision it speeds up the game
+// The below code just works 
+
+function checkCollisionsWithBird() {
+    pipes.forEach(pipe => {
+        if (bird.collidesWith(pipe)) {
+            console.log("Collision detected, game will reset.");
+            resetGameAndRestart();
+        }
+    });
+}
 
 function checkCollisions() {
     for (let pipe of pipes) {
@@ -184,8 +264,7 @@ function checkCollisions() {
 
             // Reset bird's position and velocity
             bird.y = 300;
-            bird.velocity = 0;
-
+        
             // Need to update the score Button
             score = 0;
             updateScoreButton();
@@ -196,28 +275,26 @@ function checkCollisions() {
             // Reset the last pipe time to now
             lastPipeTime = Date.now();
 
-            // Restart the animation
-            setTimeout(() => {
-                requestAnimationFrame(animate);  // Restart the animation
-            }, 1000);
             return true;
         }
     }
     return false;
 }
 
+// Ensure the animate function and all other functions are defined correctly
 function animate() {
-    ctx.clearRect(0, 0, CANVAS_WIDTH, CANVAS_HEIGHT);
-    gameObject.forEach(object => {
-        object.update();
-        object.draw();
-    });
-    bird.update();
-    bird.draw();
-    managePipes();
-    if (!checkCollisions()) {
-        requestAnimationFrame(animate);
+    if (animationActive) {
+        ctx.clearRect(0, 0, CANVAS_WIDTH, CANVAS_HEIGHT);
+        gameObject.forEach(object => object.update());
+        gameObject.forEach(object => object.draw());
+        bird.update();
+        bird.draw();
+        managePipes();
+
+        if (!checkCollisions()) {
+            animationFrameId = requestAnimationFrame(animate);
+        } else {
+            animationActive = false; // Stop animation on collision
+        }
     }
 }
-
-animate();
