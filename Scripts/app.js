@@ -45,6 +45,7 @@ function resetGameAndRestart() {
     animationFrameId = requestAnimationFrame(animate);
 }
 
+// Game becomes harder if you hit the ground!
 function resetTheBirdOnGroundCollision() {
     if (animationFrameId) {
         cancelAnimationFrame(animationFrameId);  // Cancel any ongoing animation frame
