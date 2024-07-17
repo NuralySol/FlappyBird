@@ -9,12 +9,13 @@ body {
     margin: 0; /* Ensures there is no default margin interfering with full centering */
     height: 81dvh; /* Full viewport height */  
     background-image: url(/Assets/CityForrest.png);
-    background-size: contain;
+    background-size: 72%;
+    background-blend-mode:luminosity;
 }
 
-
 #canvas {
-    border: 3px solid white;
+    display: flex;
+    border: black 10px solid rgb(0, 0, 0);
     width: 800px;
     height: 700px;
 }
