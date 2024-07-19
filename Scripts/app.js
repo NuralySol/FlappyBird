@@ -51,20 +51,26 @@ document.addEventListener('DOMContentLoaded', function() {
 function displayMessage(message) {
     const messageElement = document.createElement('div');
     messageElement.style.position = 'absolute';
-    messageElement.style.top = '50%';
-    messageElement.style.left = '50%';
-    messageElement.style.transform = 'translate(-50%, -50%)';
-    messageElement.style.color = 'red';
-    messageElement.style.fontSize = '24px';
-    messageElement.style.zIndex = '1000';
+    messageElement.style.top = '12%';
+    messageElement.style.left = '50%'; // Centering horizontally
+    messageElement.style.transform = 'translateX(-50%)'; // Only horizontally centering
+    messageElement.style.color = 'white'; // Bright, readable color
+    messageElement.style.backgroundColor = 'rgba(0, 0, 0, 0.7)'; // Semi-transparent black background
+    messageElement.style.padding = '10px 20px'; // Padding for better text visibility
+    messageElement.style.border = '2px solid red'; // Red border for emphasis
+    messageElement.style.borderRadius = '10px'; // Rounded corners
+    messageElement.style.fontSize = '20px'; // Large font size for visibility
+    messageElement.style.fontFamily = '"Lucida Console", Monaco, monospace'; // Monospaced font for a digital look
+    messageElement.style.boxShadow = '0 4px 8px rgba(0, 0, 0, 0.5)'; // Soft shadow for 3D effect
+    messageElement.style.zIndex = '1000'; // Ensure it's on top of other elements
     messageElement.innerText = message;
 
-    document.body.appendChild(messageElement);
+document.body.appendChild(messageElement);
 
     // Optionally remove the message after a few seconds
     setTimeout(() => {
         document.body.removeChild(messageElement);
-    }, 2000);
+    }, 1500);
 }
 
 let animationActive = false;
