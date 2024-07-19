@@ -63,7 +63,7 @@ const layer6 = new Layer(backgroundLayer6, 0.6);
 const layer7 = new Layer(backgroundLayer7, 0.8);
 const layer8 = new Layer(backgroundLayer8, 1.2);
 const layer9 = new Layer(backgroundLayer9, 1);
-const layer10 = new Layer(backgroundLayer10, 1.8);
+const layer10 = new Layer(backgroundLayer10, 1.2);
 const layer11 = new Layer(backgroundLayer11, 2);
 
 const gameObject = [layer1, layer2, layer3, layer4, layer5, layer6,

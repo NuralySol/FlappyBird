@@ -1,5 +1,22 @@
 document.addEventListener('DOMContentLoaded', function() {
-    // Remove the outer keydown listener
+    // Main theme 8 bit song
+    let backgroundMusic = new Audio('/Assets/Audio/8bitMainTheme.mp3');
+    backgroundMusic.loop = true;
+
+    // Function to fade out the music
+    function fadeOutMusic() {
+        let fadeInterval = setInterval(() => {
+            // Reduce the volume by 0.1 every 300 ms
+            if (backgroundMusic.volume > 0.1) {
+                backgroundMusic.volume -= 0.1;
+            } else {
+                // When volume is very low, stop the interval and set volume to desired low level
+                backgroundMusic.volume = 0.1; // Set to a lower but audible volume
+                clearInterval(fadeInterval);
+            }
+        }, 300); // Adjust time here to manage how quickly the volume decreases
+    }
+
     document.addEventListener('keydown', function(event) {
         if (event.code === 'Space') {
             if (!animationActive) return; // Prevent jumping if the game hasn't started
@@ -15,7 +32,12 @@ document.addEventListener('DOMContentLoaded', function() {
     // Start button event listener
     document.getElementById('startButton').addEventListener('click', function() {
         if (!animationActive) {
+            backgroundMusic.play();
             resetGameAndRestart();
+            setTimeout(()=> {
+                fadeOutMusic();
+            },3000); // Main theme fade out after 3 seconds or 3000 milliseconds
+            
         }
     });
 });
