@@ -47,7 +47,30 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 });
+function shakeBody() {
+    const body = document.body;
+    const shakeIntensity = 15;  // Adjust this value to get the desired effect intensity
 
+    const shake = () => {
+        const x = Math.random() * shakeIntensity - shakeIntensity / 2;
+        const y = Math.random() * shakeIntensity - shakeIntensity / 2;
+        body.style.transform = `translate(${x}px, ${y}px)`;
+    };
+
+    const numberOfShakes = 10;
+    const shakeDuration = 50;  // Duration between shakes in milliseconds
+    let shakes = 0;
+
+    const interval = setInterval(() => {
+        if (shakes < numberOfShakes) {
+            shake();
+            shakes++;
+        } else {
+            clearInterval(interval);
+            body.style.transform = 'translate(0, 0)';  // Reset body position after shaking
+        }
+    }, shakeDuration);
+}
 // Independent message display so that it does not mess up canvas
 
 function displayMessage(message) {
@@ -380,6 +403,7 @@ function checkCollisions() {
             //Hit the pipe play sound
             hitSound.play();
             deadBird = new DeadBird(bird.x, bird.y);
+            shakeBody(); 
             animateDeadBird();
             // Reset bird's position and velocity
             bird.y = 300;

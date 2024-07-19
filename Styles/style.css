@@ -14,6 +14,8 @@ body {
     background-image: url(/Assets/CityForrest.png);
     background-size: 72%;
     background-blend-mode: luminosity;
+    transition: transform 0.05s linear;
+    position: relative;
 }
 
 #canvas {
@@ -21,6 +23,7 @@ body {
     border: black 3px solid rgb(0, 0, 0);
     width: 800px;
     height: 700px;
+
 }
 
 /* to be styled later */
@@ -70,6 +73,7 @@ button:hover {
     border: 1px solid #13aa52;
     letter-spacing: 0.03em;
 }
+
 #startButton {
     transition: opacity 3s ease-in-out;
     letter-spacing: 0.03em;
@@ -88,63 +92,71 @@ button:hover {
 }
 
 #youHaveDied {
-    position: absolute; /* Position it absolutely within the body or container */
-    top: 85%; /* Center it vertically */
-    left: 50%; /* Center it horizontally */
-    transform: translate(-50%, -50%); /* Align the center of the button to the center of the viewport */
-    display: none; /* Start with the button hidden */
-    z-index: 1000; /* Ensure it's on top of other elements */
+    position: absolute;
+    /* Position it absolutely within the body or container */
+    top: 85%;
+    /* Center it vertically */
+    left: 50%;
+    /* Center it horizontally */
+    transform: translate(-50%, -50%);
+    /* Align the center of the button to the center of the viewport */
+    display: none;
+    /* Start with the button hidden */
+    z-index: 1000;
+    /* Ensure it's on top of other elements */
     padding: 10px;
     background-color: 'rgba(0, 0, 0, 0.7)';
-    color: yellow;
-    font-weight: 200;
-    box-shadow:'0 4px 8px rgba(0, 0, 0, 0.5)'; 
+    color: rgb(0, 0, 0);
+    font-weight: 500;
+    box-shadow: '0 4px 8px rgba(0, 0, 0, 0.5)';
     border-radius: 5px;
     font-family: '"Lucida Console", Monaco, monospace';
     letter-spacing: 0.1em;
+    opacity: 0.7;
 
 }
 
 h1 {
     font-family: "Lucida Grande", Tahoma;
-	font-size: 20px;
-	font-weight: lighter;
-	font-variant: normal;
-	text-transform: uppercase;
-	color: #666666;
+    font-size: 20px;
+    font-weight: lighter;
+    font-variant: normal;
+    text-transform: uppercase;
+    color: #666666;
     margin-top: 10px;
-	text-align: center!important;
-	letter-spacing: 0.3em;
+    text-align: center !important;
+    letter-spacing: 0.3em;
 }
 
 p1 {
     font-family: "Lucida Grande", Tahoma;
-	font-size: 10px;
-	font-weight:lighter;
-	font-variant: normal;
-	text-transform: uppercase;
-	color: #000000;
+    font-size: 10px;
+    font-weight: lighter;
+    font-variant: normal;
+    text-transform: uppercase;
+    color: #000000;
     margin-top: 22px;
-	letter-spacing: 0.2em;
+    letter-spacing: 0.2em;
 }
+
 p2 {
     font-family: "Lucida Grande", Tahoma;
-	font-size: 10px;
-	font-weight:lighter;
-	font-variant: normal;
-	text-transform: uppercase;
-	color: #000000;
-	letter-spacing: 0.2em;
+    font-size: 10px;
+    font-weight: lighter;
+    font-variant: normal;
+    text-transform: uppercase;
+    color: #000000;
+    letter-spacing: 0.2em;
 
 }
 
 p3 {
     font-family: "Lucida Grande", Tahoma;
-	font-size: 10px;
-	font-weight:lighter;
-	font-variant: normal;
-	text-transform: uppercase;
-	color: #000000;
-	letter-spacing: 0.2em;
+    font-size: 10px;
+    font-weight: lighter;
+    font-variant: normal;
+    text-transform: uppercase;
+    color: #000000;
+    letter-spacing: 0.2em;
     margin-bottom: 22px;
 }
