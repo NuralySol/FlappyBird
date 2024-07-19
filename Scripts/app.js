@@ -38,6 +38,8 @@ document.addEventListener('DOMContentLoaded', function() {
         if (!animationActive) {
             backgroundMusic.play();
             resetGameAndRestart();
+            this.style.opacity = '0';
+            
             setTimeout(()=> {
                 fadeOutMusic();
             },3000); // Main theme fade out after 3 seconds or 3000 milliseconds
@@ -256,6 +258,19 @@ let score = 0;  // This is global for tracking scores + highScore which is stati
 let highScore = 0;
 let deathRestart = "";
 
+function popScoreAnimation() {
+    const scoreButton = document.getElementById('scoreButton');
+    scoreButton.style.transition = 'transform 0.3s, color 0.3s'; // Smooth transition for transformation and color
+    scoreButton.style.transform = 'scale(1.5)'; // Enlarge the score display
+    scoreButton.style.color = 'yellow'; // Change color to make it pop
+
+    // Revert back after some time
+    setTimeout(() => {
+        scoreButton.style.transform = 'scale(1)';
+        scoreButton.style.color = 'black'; // Assume black is the original color
+    }, 220); // Time in milliseconds after which it reverts back
+}
+
 function updateScoreButton() {
     const scoreButton = document.getElementById('scoreButton');
     scoreButton.textContent = 'Score: ' + score / 2; //score has to be divided by 2 because bird passes two towers
@@ -286,6 +301,7 @@ class Pipe {
             updateScoreButton();
             updateHighScoreButton();
             playSound();
+            popScoreAnimation(); 
         }
     }
 
