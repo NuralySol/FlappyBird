@@ -21,6 +21,8 @@ document.addEventListener('DOMContentLoaded', function() {
         }, 300); // Adjust time here to manage how quickly the volume decreases
     }
 
+    let dashCooldown = false;
+
     document.addEventListener('keydown', function(event) {
         if (event.code === 'Space') {
             if (!animationActive) return; // Prevent jumping if the game hasn't started
@@ -30,6 +32,19 @@ document.addEventListener('DOMContentLoaded', function() {
                 swooshSound.play();
             }, 250);
             event.preventDefault();
+        } else if (event.code === 'KeyD' && !dashCooldown) { // Check if 'D' is pressed and no cooldown
+            dashCooldown = true; // Set cooldown flag
+            const originalSpeed = gameSpeed;
+            gameSpeed *= 4; // Increase the game speed by 4 times
+            gameObject.forEach(object => object.update()); // Update the speed of all game objects
+            setTimeout(() => {
+                gameSpeed = originalSpeed; // Reset the speed after 200 milliseconds
+                gameObject.forEach(object => object.update());
+            }, 450); // Speed duration
+    
+            setTimeout(() => {
+                dashCooldown = false; // Reset cooldown after 2 seconds
+            }, 2000); // Cooldown duration
         }
     });
 
@@ -97,6 +112,7 @@ document.body.appendChild(messageElement);
         document.body.removeChild(messageElement);
     }, 1500);
 }
+
 
 let animationActive = false;
 let animationFrameId;
