@@ -103,3 +103,46 @@ button:hover {
     touch-action: manipulation;
 }
 
+h1 {
+    font-family: "Lucida Grande", Tahoma;
+	font-size: 20px;
+	font-weight: lighter;
+	font-variant: normal;
+	text-transform: uppercase;
+	color: #666666;
+    margin-top: 10px;
+	text-align: center!important;
+	letter-spacing: 0.3em;
+}
+
+p1 {
+    font-family: "Lucida Grande", Tahoma;
+	font-size: 10px;
+	font-weight:lighter;
+	font-variant: normal;
+	text-transform: uppercase;
+	color: #000000;
+    margin-top: 22px;
+	letter-spacing: 0.2em;
+}
+p2 {
+    font-family: "Lucida Grande", Tahoma;
+	font-size: 10px;
+	font-weight:lighter;
+	font-variant: normal;
+	text-transform: uppercase;
+	color: #000000;
+	letter-spacing: 0.2em;
+
+}
+
+p3 {
+    font-family: "Lucida Grande", Tahoma;
+	font-size: 10px;
+	font-weight:lighter;
+	font-variant: normal;
+	text-transform: uppercase;
+	color: #000000;
+	letter-spacing: 0.2em;
+    margin-bottom: 22px;
+}
