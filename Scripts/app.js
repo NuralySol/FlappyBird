@@ -37,6 +37,7 @@ document.addEventListener('DOMContentLoaded', function() {
             const originalSpeed = gameSpeed;
             gameSpeed *= 4; // Increase the game speed by 4 times
             gameObject.forEach(object => object.update()); // Update the speed of all game objects
+            emitParticles(); 
             setTimeout(() => {
                 gameSpeed = originalSpeed; // Reset the speed after 200 milliseconds
                 gameObject.forEach(object => object.update());
@@ -359,6 +360,52 @@ class Pipe {
     }
 }
 
+class Particle {
+    constructor(x, y) {
+        this.x = x;
+        this.y = y;
+        this.size = Math.random() * 10 + 5;  // Increase the size for better visibility
+        this.speedX = Math.random() * -15 - 5;  // Increase the leftward speed
+        this.speedY = Math.random() * 5 - 2.5;  // Lesser vertical movement
+        this.color = 'rgba(255, 255, 255, 0.9)';  // Make them slightly more opaque
+    }
+
+    update() {
+        this.x += this.speedX;
+        this.y += this.speedY;
+        this.size *= 0.9;  // Faster fading to keep the performance and avoid clutter
+    }
+
+    draw() {
+        ctx.fillStyle = this.color;
+        ctx.beginPath();
+        ctx.arc(this.x, this.y, this.size, 0, 2 * Math.PI);
+        ctx.fill();
+    }
+}
+
+let particles = [];
+
+function handleParticles() {
+    for (let i = particles.length - 1; i >= 0; i--) {
+        particles[i].update();
+        particles[i].draw();
+        // Remove particles that are too small to be seen
+        if (particles[i].size <= 0.5) {
+            particles.splice(i, 1);
+        }
+    }
+}
+
+function emitParticles() {
+    // Create 50 particles at once for a more dramatic effect
+    for (let i = 0; i < 50; i++) {
+        let xOffset = Math.random() * bird.width - bird.width;  // Spread starting x to cover more area
+        let yOffset = Math.random() * bird.height - bird.height / 2;  // Spread starting y to make the effect fuller
+        particles.push(new Particle(bird.x + xOffset, bird.y + yOffset));
+    }
+}
+
 let pipes = [];
 let pipeWidth = 52; // Adjust based on your image's aspect ratio
 let pipeHeight = 160; // Adjust based on your image's aspect ratio
@@ -459,6 +506,7 @@ function animate() {
         gameObject.forEach(object => object.draw());
         bird.update();
         bird.draw();
+        handleParticles()
         managePipes();
 
         if (!checkCollisions()) {
