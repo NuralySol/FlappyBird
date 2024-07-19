@@ -2,6 +2,10 @@ document.addEventListener('DOMContentLoaded', function() {
     // Main theme 8 bit song
     let backgroundMusic = new Audio('/Assets/Audio/8bitMainTheme.mp3');
     backgroundMusic.loop = true;
+    
+    document.addEventListener('birdHitGround', () => {
+        displayMessage('Fly faster, fool!');
+    });
 
     // Function to fade out the music
     function fadeOutMusic() {
@@ -41,6 +45,27 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 });
+
+// Independent message display so that it does not mess up canvas
+
+function displayMessage(message) {
+    const messageElement = document.createElement('div');
+    messageElement.style.position = 'absolute';
+    messageElement.style.top = '50%';
+    messageElement.style.left = '50%';
+    messageElement.style.transform = 'translate(-50%, -50%)';
+    messageElement.style.color = 'red';
+    messageElement.style.fontSize = '24px';
+    messageElement.style.zIndex = '1000';
+    messageElement.innerText = message;
+
+    document.body.appendChild(messageElement);
+
+    // Optionally remove the message after a few seconds
+    setTimeout(() => {
+        document.body.removeChild(messageElement);
+    }, 2000);
+}
 
 let animationActive = false;
 let animationFrameId;
@@ -151,7 +176,11 @@ class Bird {
     resetOnGroundCollision = () => { // Arrow function to reset the game
         console.log("Bird has hit the bottom. Resetting game...");
         resetTheBirdOnGroundCollision();
-        wilhelmscream();
+        wilhelmscream(); 
+         // Dispatch an event indicating that the bird has hit the ground
+        const event = new Event('birdHitGround');
+        document.dispatchEvent(event);
+    
     }
 }
 
