@@ -6,6 +6,7 @@ const CANVAS_WIDTH = canvas.width = 800;
 const CANVAS_HEIGHT = canvas.height = 700;
 let gameSpeed = 1;
 
+
 const backgroundLayer1 = new Image();
 backgroundLayer1.src = '/Assets/Layers/layer1.png';
 const backgroundLayer2 = new Image();
@@ -68,5 +69,4 @@ const layer11 = new Layer(backgroundLayer11, 2);
 
 const gameObject = [layer1, layer2, layer3, layer4, layer5, layer6,
     layer7, layer8, layer9, layer10, layer11];
-
 

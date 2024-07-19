@@ -57,7 +57,7 @@ function displayMessage(message) {
     messageElement.style.color = 'white'; // Bright, readable color
     messageElement.style.backgroundColor = 'rgba(0, 0, 0, 0.7)'; // Semi-transparent black background
     messageElement.style.padding = '10px 20px'; // Padding for better text visibility
-    messageElement.style.border = '2px solid red'; // Red border for emphasis
+    messageElement.style.border = '2px solid yellow'; // Border color
     messageElement.style.borderRadius = '10px'; // Rounded corners
     messageElement.style.fontSize = '20px'; // Large font size for visibility
     messageElement.style.fontFamily = '"Lucida Console", Monaco, monospace'; // Monospaced font for a digital look
@@ -412,3 +412,4 @@ function animate() {
         }
     }
 }
+
