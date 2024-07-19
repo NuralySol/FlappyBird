@@ -60,7 +60,7 @@ button:hover {
 }
 
 #scoreButton {
-    color: red;
+    color: black;
     font-size: 18px;
     background-color: rgb(19, 231, 132);
     border-color: black;
@@ -71,7 +71,7 @@ button:hover {
 }
 
 #highestButton {
-    color: red;
+    color: black;
     font-size: 18px;
     background-color: rgb(19, 231, 132);
     border-color: black;
@@ -87,10 +87,10 @@ button:hover {
     border-radius: 4px;
     box-shadow: rgba(0, 0, 0, .1) 0 2px 4px 0;
     box-sizing: rgb(0, 0, 0)order-box;
-    color: rgb(9, 9, 0);
+    color: yellow;
     cursor: pointer;
     font-family: "Akzidenz Grotesk BQ Medium", -apple-system, BlinkMacSystemFont, sans-serif;
-    font-size: 18px;
+    font-size: 20px;
     font-weight: 400;
     outline: none;
     outline: 0;
