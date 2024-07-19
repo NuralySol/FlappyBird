@@ -1,4 +1,4 @@
-
+// This is Parallax and it is integral part of the game for immersion
 
 const canvas = document.getElementById('canvas1');
 const ctx = canvas.getContext('2d');
