@@ -129,6 +129,7 @@ class Bird {
     resetOnGroundCollision = () => { // Arrow function to reset the game
         console.log("Bird has hit the bottom. Resetting game...");
         resetTheBirdOnGroundCollision();
+        wilhelmscream();
     }
 }
 
@@ -145,8 +146,14 @@ const hitSound = new Audio('/Assets/Audio/sfx_hit.wav');
 const flySound = new Audio('/Assets/Audio/sfx_wing.wav');
 const swooshSound = new Audio('/Assets/Audio/sfx_swooshing.wav');
 const dieSound = new Audio('/Assets/Audio/sfx_die.wav');
+const wilhelmSound = new Audio('/Assets/Audio/wilhelmscream.mp3');
 
-//Give the function to play the point sound
+// Function to play the wilhelm scream when bird hits the ground
+function wilhelmscream(){
+    wilhelmSound.play();
+}
+
+// Function to play the point sound
 function playSound() {
     passSound.play();
 }
