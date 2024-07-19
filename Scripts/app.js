@@ -190,8 +190,43 @@ class Bird {
     }
 }
 
-// need to
+// need to create a dead Bird class for different behavior
+class DeadBird {
+    constructor(x, y) {
+        this.x = x;
+        this.y = y;
+        this.width = 41;  // Adjust based on your spritesheet frame size
+        this.height = 33;  // Adjust based on your spritesheet frame size
+        this.frameIndex = 0;
+        this.tickCount = 0;
+        this.ticksPerFrame = 15;  // Adjust for desired animation speed
+        this.numFrames = 8;  // Total frames in your ascending spritesheet
+        this.image = new Image();
+        this.image.src = '/Assets/Sprite/deadbirdsprite.png';  // Path to your ascending spritesheet
+    }
 
+    update() {
+        this.y -= 2;  // Adjust the rate of ascent
+        this.tickCount++;
+        if (this.tickCount > this.ticksPerFrame) {
+            this.tickCount = 0;
+            this.frameIndex++;
+            if (this.frameIndex >= this.numFrames) {
+                this.frameIndex = 0;  // Loop the animation or handle the end of ascent
+            }
+        }
+    }
+
+    draw(ctx) {
+        let frameX = this.width * this.frameIndex;
+        ctx.drawImage(this.image, frameX, 0, this.width, this.height, this.x, this.y, this.width, this.height);
+    }
+}
+
+// need to store the deadBird 
+let deadBird = null;
+
+// this bird exists at all times
 const bird = new Bird();
 
 const pipeNorth = new Image();
@@ -328,7 +363,8 @@ function checkCollisions() {
             }, 600);
             //Hit the pipe play sound
             hitSound.play();
-
+            deadBird = new DeadBird(bird.x, bird.y);
+            animateDeadBird();
             // Reset bird's position and velocity
             bird.y = 300;
         
@@ -346,6 +382,17 @@ function checkCollisions() {
         }
     }
     return false;
+}
+function animateDeadBird() {
+    if (deadBird.y > -deadBird.height) {  // Continue while the bird is visible on the canvas
+        ctx.clearRect(0, 0, CANVAS_WIDTH, CANVAS_HEIGHT);
+        deadBird.update();
+        deadBird.draw(ctx);
+        requestAnimationFrame(animateDeadBird);
+    } else {
+        // Optionally reset the game or end the animation when finished
+        resetGameAndRestart();
+    }
 }
 
 // Ensure the animate function and all other functions are defined correctly
