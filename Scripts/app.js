@@ -190,6 +190,8 @@ class Bird {
     }
 }
 
+// need to
+
 const bird = new Bird();
 
 const pipeNorth = new Image();
