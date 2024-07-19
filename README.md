@@ -54,9 +54,9 @@ The desired outcome of the game.
 |---	        |---	        |---	|---	|
 |   Saturday	|   Paralax	    |   	|   	|
 |   Sunday	    |   Sounds      |   	|   	|
-|   Monday	    |   Start/Stop  | ?  	|   	|
+|   Monday	    |   Start       |   	|   	|
 |   Tuesday	    |   	        |   	|   	|
 |   Wednesday	|   	        |   	|   	|
 |   Thursday	|   	        |      	|   	|
 
-**PRESENTATION IS FRIDAY** 19 July 2024. 
+**PRESENTATION IS FRIDAY** 21 July 2024. 
