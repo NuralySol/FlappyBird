@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', function() {
-    // Main theme 8 bit song
+    // Main theme 8 bit song 
     let backgroundMusic = new Audio('/Assets/Audio/8bitMainTheme.mp3');
     backgroundMusic.loop = true;
     
@@ -7,25 +7,25 @@ document.addEventListener('DOMContentLoaded', function() {
         displayMessage('Fly faster, fool!');
     });
 
-    // Function to fade out the music
+    // Function to fade out the music after the theme 8 bit music starts
     function fadeOutMusic() {
         let fadeInterval = setInterval(() => {
             // Reduce the volume by 0.1 every 300 ms
+            
             if (backgroundMusic.volume > 0.1) {
                 backgroundMusic.volume -= 0.1;
             } else {
-                // When volume is very low, stop the interval and set volume to desired low level
-                backgroundMusic.volume = 0.1; // Set to a lower but audible volume
+                backgroundMusic.volume = 0.1; // This is background music volume 8 bit theme after the start is pressed
                 clearInterval(fadeInterval);
             }
-        }, 300); // Adjust time here to manage how quickly the volume decreases
+        }, 300); 
     }
 
     let dashCooldown = false;
 
     document.addEventListener('keydown', function(event) {
         if (event.code === 'Space') {
-            if (!animationActive) return; // Prevent jumping if the game hasn't started
+            if (!animationActive) return; // Prevents jumping if the game hasn't started
             bird.jump();
             flySound.play();
             setTimeout(() => {
@@ -33,10 +33,10 @@ document.addEventListener('DOMContentLoaded', function() {
             }, 250);
             event.preventDefault();
         } else if (event.code === 'KeyD' && !dashCooldown) { // Check if 'D' is pressed and no cooldown
-            dashCooldown = true; // Set cooldown flag
+            dashCooldown = true; // Set cooldown flag so 'D' for dash can not be spammed
             const originalSpeed = gameSpeed;
-            gameSpeed *= 4; // Increase the game speed by 4 times
-            gameObject.forEach(object => object.update()); // Update the speed of all game objects
+            gameSpeed *= 4; // Increases the game speed by 4 times 
+            gameObject.forEach(object => object.update()); // Updates the speed of all game objects 
             emitParticles(); 
             setTimeout(() => {
                 gameSpeed = originalSpeed; // Reset the speed after 200 milliseconds
@@ -45,7 +45,7 @@ document.addEventListener('DOMContentLoaded', function() {
     
             setTimeout(() => {
                 dashCooldown = false; // Reset cooldown after 2 seconds
-            }, 2000); // Cooldown duration
+            }, 2000); // Cooldown duration so no spamming of dash ability
         }
     });
 
@@ -65,7 +65,7 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 function shakeBody() {
     const body = document.body;
-    const shakeIntensity = 15;  // Adjust this value to get the desired effect intensity
+    const shakeIntensity = 15;  // Shaking function for intensity and immersion if the bird dies
 
     const shake = () => {
         const x = Math.random() * shakeIntensity - shakeIntensity / 2;
@@ -87,8 +87,8 @@ function shakeBody() {
         }
     }, shakeDuration);
 }
-// Independent message display so that it does not mess up canvas
 
+// Independent message display so that it does not mess up canvas (Canvas is weird at times)
 function displayMessage(message) {
     const messageElement = document.createElement('div');
     messageElement.style.position = 'absolute';
@@ -108,7 +108,7 @@ function displayMessage(message) {
 
 document.body.appendChild(messageElement);
 
-    // Optionally remove the message after a few seconds
+    // Remove the message after 1500 milliseconds
     setTimeout(() => {
         document.body.removeChild(messageElement);
     }, 1500);
@@ -128,10 +128,10 @@ function resetGameAndRestart() {
     bird.gravity = 0.5; // Reset to default if it changes in the game
     bird.lift = -34; // Reset to default if it changes in the game
 
-    // Reset game speed if it's a global modifier that changes
-    gameSpeed = 1; // Assuming you have a gameSpeed variable that might change
+    // Reset the game speed to the default value
+    gameSpeed = 1; 
 
-    // Clear and reset pipes, scores, etc.
+    // Clear and reset pipes, scores, etc
     pipes = [];
     score = 0;
     lastPipeTime = Date.now();
@@ -174,7 +174,7 @@ class Bird {
         this.width = 41;           // Each sprite's frame width
         this.height = 30;          // Each sprite's frame height
         this.gravity = 0.5;
-        this.lift = -32;           // Lift of the bird
+        this.lift = -32;           // Lift of the bird in pixels in canvas upwards
         this.velocity = 0;
         this.frameIndex = 0;       // Start at the first frame
         this.tickCount = 0;        // Counter to manage animation timing
@@ -196,7 +196,7 @@ class Bird {
 
     applyPhysics() {
         this.velocity += this.gravity;
-        this.velocity *= 0.7; // Simulating air resistance
+        this.velocity *= 0.7; // Simulating air resistance after much tweaking 0.7 seems to be a sweetspot
         this.y += this.velocity;
 
         
@@ -232,7 +232,7 @@ class Bird {
     }
 }
 
-// need to create a dead Bird class for different behavior
+// Need to create a dead Bird class for different behavior for different sprite instead of extends
 class DeadBird {
     constructor(x, y) {
         this.x = x;
@@ -248,7 +248,7 @@ class DeadBird {
     }
 
     update() {
-        this.y -= 2;  // Adjust the rate of ascent
+        this.y -= 2;  // Adjust the rate of ascent to the heaven
         this.tickCount++;
         if (this.tickCount > this.ticksPerFrame) {
             this.tickCount = 0;
@@ -265,10 +265,10 @@ class DeadBird {
     }
 }
 
-// need to store the deadBird 
+// Need to store the deadBird 
 let deadBird = null;
 
-// this bird exists at all times
+// This bird exists at all times
 const bird = new Bird();
 
 const pipeNorth = new Image();
@@ -276,7 +276,7 @@ pipeNorth.src = '/Assets/pipeNorth.png';
 const pipeSouth = new Image();
 pipeSouth.src = '/Assets/pipeSouth.png';
 
-//Get the sound for successful pass of the pipes
+// All of the sound files of the game (they are all in public domain inc. 8 bit theme song)
 const passSound = new Audio('/Assets/Audio/sfx_point.wav');
 const hitSound = new Audio('/Assets/Audio/sfx_hit.wav');
 const flySound = new Audio('/Assets/Audio/sfx_wing.wav');
@@ -294,17 +294,18 @@ function playSound() {
     passSound.play();
 }
 
-let score = 0;  // This is global for tracking scores + highScore which is static
+let score = 0;  // This is global for tracking scores + highScore which is static 
 let highScore = 0;
 let deathRestart = "";
 
+// Function to make the scoring more impactful and 'pop' for user experience
 function popScoreAnimation() {
     const scoreButton = document.getElementById('scoreButton');
     scoreButton.style.transition = 'transform 0.3s, color 0.3s'; // Smooth transition for transformation and color
     scoreButton.style.transform = 'scale(1.5)'; // Enlarge the score display
-    scoreButton.style.color = 'yellow'; // Change color to make it pop
+    scoreButton.style.color = 'yellow'; // Change color to make it pop Yellow is the most noticable color 
 
-    // Revert back after some time
+    // Function to revert back after some time
     setTimeout(() => {
         scoreButton.style.transform = 'scale(1)';
         scoreButton.style.color = 'black'; // Assume black is the original color
@@ -313,7 +314,7 @@ function popScoreAnimation() {
 
 function updateScoreButton() {
     const scoreButton = document.getElementById('scoreButton');
-    scoreButton.textContent = 'Score: ' + score / 2; //score has to be divided by 2 because bird passes two towers
+    scoreButton.textContent = 'Score: ' + score / 2; //score has to be divided by 2 because bird passes two towers 
 }
 
 function updateHighScoreButton () {
@@ -321,6 +322,7 @@ function updateHighScoreButton () {
     highScoreButton.textContent = 'Highest Score: ' + highScore / 2;
 }
 
+// Pipe class since the pipes exist in relation to the bird 
 class Pipe {
     constructor(image, x, y, width, height) {
         this.x = x;
@@ -360,20 +362,21 @@ class Pipe {
     }
 }
 
+// Fabulous particle class when the D is pressed for more immersion source was Chat Gpt 4.0 with much tweaking
 class Particle {
     constructor(x, y) {
         this.x = x;
         this.y = y;
-        this.size = Math.random() * 10 + 5;  // Increase the size for better visibility
-        this.speedX = Math.random() * -15 - 5;  // Increase the leftward speed
-        this.speedY = Math.random() * 5 - 2.5;  // Lesser vertical movement
-        this.color = 'rgba(255, 255, 255, 0.9)';  // Make them slightly more opaque
+        this.size = Math.random() * 10 + 5;         // Increase the size for better visibility
+        this.speedX = Math.random() * -15 - 5;      // Increase the leftward speed
+        this.speedY = Math.random() * 5 - 2.5;      // Lesser vertical movement
+        this.color = 'rgba(255, 255, 255, 0.9)';    // Make them slightly more opaque
     }
 
     update() {
         this.x += this.speedX;
         this.y += this.speedY;
-        this.size *= 0.9;  // Faster fading to keep the performance and avoid clutter
+        this.size *= 0.90; // Faster fading to keep the performance and avoid clutter
     }
 
     draw() {
@@ -407,10 +410,10 @@ function emitParticles() {
 }
 
 let pipes = [];
-let pipeWidth = 52; // Adjust based on your image's aspect ratio
-let pipeHeight = 160; // Adjust based on your image's aspect ratio
-let gap = 170; // Gap between the top and bottom pipes
-let pipeInterval = 2700; // Interval in milliseconds to push new pipes
+let pipeWidth = 52;         // Pipes image's aspect ratio
+let pipeHeight = 160;       // Pipes height image aspect ratio
+let gap = 170;              // Gap between the top and bottom pipes
+let pipeInterval = 2700;    // Interval in milliseconds to push new pipes
 let lastPipeTime = 0;
 
 function managePipes() {
@@ -433,16 +436,15 @@ function displayDeathMessage() {
     deathMessageButton.textContent = "Dead! Restarting";
     deathMessageButton.style.display = 'block';  // Make the button visible
 
-    // Optionally, hide the button after some time and restart the game
     setTimeout(() => {
         deathMessageButton.style.display = 'none';  // Hide the button
         resetGameAndRestart();  // Call a function to reset the game state and restart the animation
     }, 1700); // Display message for 1700 milliseconds 
 }
 
-// You might ask why I need two functions for bird collission so that it does not mess up the spee
-// Otherwise I found Out that if there is only one function for pipe collision it speeds up the game
-// The below code just works 
+// You might ask why I need two functions for bird collission so that it does not mess up the speed
+// Otherwise I found out that if there is only one function for pipe collision it speeds up the game
+// The below code just works (magic?)
 
 function checkCollisionsWithBird() {
     pipes.forEach(pipe => {
@@ -457,13 +459,13 @@ function checkCollisions() {
     for (let pipe of pipes) {
         if (pipe.collidesWith(bird)) {
             console.log("You Have Died. Restarting...")
-            //Death Message
+            // Death Message
             displayDeathMessage();
-            //Die sound is played after 600 milliseconds
+            // Die sound is played after 600 milliseconds
             setTimeout(() => {
                 dieSound.play();
             }, 600);
-            //Hit the pipe play sound
+            // Hit the pipe play sound
             hitSound.play();
             deadBird = new DeadBird(bird.x, bird.y);
             shakeBody(); 
@@ -498,7 +500,7 @@ function animateDeadBird() {
     }
 }
 
-// Ensure the animate function and all other functions are defined correctly
+// The main animate function which draws the bird, pipes, etc. 
 function animate() {
     if (animationActive) {
         ctx.clearRect(0, 0, CANVAS_WIDTH, CANVAS_HEIGHT);
