@@ -2,42 +2,36 @@
 
 ## This is a FlappyBird Project 
 
-My game is a FlabbyBird Project, a hit with all ages and demographics, with two lose conditions. You may never win but you might a higher score thus bragging rights in your local pub. Game is simple and complex at the same time as well as addicting.
+My game is a FlabbyBird Project, a hit with all ages and demographics. You may never win but you might get a higher score thus the bragging rights in your local pub. Game is simple and complex at the same time as well as addicting.
 
+## Main menu
+![Flappy Bird main menu](./Assets/MainScreen%20.png)
 
-* Start with the HTML and CSS set ASAP to build the scaffolding. 
-
-* I have all of the theory and the project concepts in place.
-* Pseudo code/code is not ready yet but will be doing over the weekend and will have a prototype by the end of the weekeend.
-* Want to add a lot of extra features for more aesthetitc and fun experience for the user.
-* User story is an important aspect of the project.
-
-
-## Sprites? or Canvas?
-
-> **TO DO**: The most important choice over the weekend to choose the graphical display of the game. Canvas is easier but custom sprites might add more character and uniqness to the project. 
+## Canvas and sprites
+> Game incorporates both canvas and sprites for a greater immersion and user experience. 
 
 ## The behavior and the gravity for user experience.
 
-> The theoretical behavior and the physics of the bird and the randomness is known the source of that is a paper by CS class at Columbia engineering. **reference:** [CSEngineeringColumbia](https://www.cs.columbia.edu/~sedwards/classes/2015/4840/reports/Flappy-Bird.pdf)
+> The theoretical behavior and the physics of the bird and the randomness is known. The source of that is a paper by CS class at Columbia engineering. **reference:** [CSEngineeringColumbia](https://www.cs.columbia.edu/~sedwards/classes/2015/4840/reports/Flappy-Bird.pdf) 
 
 ## Paralax an important feature
 
-> The important feature of the Flappy Bird game is ***paralax*** (a feeling of infinites, and the sense of depth). It is important to get the paralax right  and user pleasing experience, and again here we can use Canvas or custom sprites, which i can buy of the internet. Source to be provided.
+> The important feature of this Flappy Bird game is ***Parallax*** (a feeling of infinites, and the sense of depth). It is important to get the parallax right and user pleasing experience. The source for images was a site in which I paid for those images thus all the legal rights to those images [2d Artist](https://bevouliin.com)
 
 ## WireFrame of the FlappyBird
 
 The desired outcome of the game.
 
-![image info](./WireFrame/GameWireFrame.jpg)
+![My wireframe circa 12 July 2024](./WireFrame/GameWireFrame.jpg)
 
 ## Playing the game.
 
-> You play the game by continuously pressing the jump button and in this case it is going to be **SPACE** button. The goal is to not hit the pipe by threading the keyhole and/or not hit the ground keeping the bird afloat at all times. 
+> You play the game by continuously pressing the jump button and in this case it is going to be **SPACE** button. The goal is to not hit the pipe by threading the keyhole and/or not hit the ground keeping the bird afloat at all times. I have also **D** button for quick dash for more fun. Unlike other flappy bird clones I have added twist if you hit the ground game becomes faster and harder. 
 
 ### User Story
 
 * As a player, I want my game to feel aesthetically pleasing.
+* As a player, I want to game to feel warm. 
 * As a pleyer, I want my game to be responsive.
 * As a player, I want my game to keep track of the score, and each score be meaningful.
 * As a player, I want my game to be intuitive to every age demographics.
@@ -50,13 +44,16 @@ The desired outcome of the game.
 
 
 
-| Day  	        |  Tasks	    |  Blockers 	|   Notes	|
-|---	        |---	        |---	|---	|
-|   Saturday	|   Paralax	    |   	|   	|
-|   Sunday	    |   Sounds      |   	|   	|
-|   Monday	    |   Start       |   	|   	|
-|   Tuesday	    |   	        |   	|   	|
-|   Wednesday	|   	        |   	|   	|
-|   Thursday	|   	        |      	|   	|
+| Day  	        |  Tasks	        |  Blockers 	|   Notes	|
+|---	        |---	            |---	|---	|
+|   Saturday	|   Paralax	        |   	|   	|
+|   Sunday	    |   Sounds          |   	|   	|
+|   Monday	    |   Start           |   	|   	|
+|   Tuesday	    |   Audio	        |   	|   	|
+|   Wednesday	|   DeadBird	    |   	|   	|
+|   Thursday	|   More immersion  |      	|   	|
 
 **PRESENTATION IS FRIDAY** 21 July 2024. 
+
+Nuraly Soltonbekov
+soltonbekov@gmail.com
