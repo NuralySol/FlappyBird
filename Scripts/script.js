@@ -1,5 +1,5 @@
 // This is Parallax and it is integral part of the game for immersion
-// Inspiration and the source to include the parallax was a youtube channel Jack's Labarotory 
+// Inspiration and the source to include the parallax was a youtube channel Frank's Labarotory 
 
 const canvas = document.getElementById('canvas1');
 const ctx = canvas.getContext('2d');
