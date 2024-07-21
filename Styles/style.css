@@ -28,7 +28,7 @@ body {
 
 /* to be styled later */
 
-/* CSS */
+/* source for these styles was stylish css buttons */
 button {
     background-color: #13aa52;
     border: 1px solid #13aa52;
@@ -93,17 +93,11 @@ button:hover {
 
 #youHaveDied {
     position: absolute;
-    /* Position it absolutely within the body or container */
     top: 85%;
-    /* Center it vertically */
     left: 50%;
-    /* Center it horizontally */
     transform: translate(-50%, -50%);
-    /* Align the center of the button to the center of the viewport */
     display: none;
-    /* Start with the button hidden */
     z-index: 1000;
-    /* Ensure it's on top of other elements */
     padding: 10px;
     background-color: 'rgba(0, 0, 0, 0.7)';
     color: rgb(0, 0, 0);
