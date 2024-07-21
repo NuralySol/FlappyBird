@@ -434,14 +434,15 @@ function managePipes() {
 function displayDeathMessage() {
     const deathMessageButton = document.getElementById('youHaveDied');
     deathMessageButton.textContent = "Dead! Restarting";
-    deathMessageButton.style.display = 'block';  // Make the button visible
+    deathMessageButton.style.display = 'block'; // Make the button visible
+    deathMessageButton.classList.add('visible'); // Add the visible class to trigger the animation
 
     setTimeout(() => {
-        deathMessageButton.style.display = 'none';  // Hide the button
-        resetGameAndRestart();  // Call a function to reset the game state and restart the animation
-    }, 1700); // Display message for 1700 milliseconds 
+        deathMessageButton.classList.remove('visible'); // Remove the class to reset the animation
+        deathMessageButton.style.display = 'none'; // Finally hide the button after the animation
+        resetGameAndRestart(); // Call to restart the game
+    }, 2000); // Keep the message displayed for 2 seconds
 }
-
 // You might ask why I need two functions for bird collission so that it does not mess up the speed
 // Otherwise I found out that if there is only one function for pipe collision it speeds up the game
 // The below code just works (magic?)
