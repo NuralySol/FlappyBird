@@ -53,6 +53,9 @@ The desired outcome of the game.
 |   Wednesday	|   DeadBird	    |   	|   	|
 |   Thursday	|   More immersion  |      	|   	|
 
+Link to the game 
+[Flappy Bird](https://nuralysolflappybird.netlify.app/)
+
 **PRESENTATION IS FRIDAY** 21 July 2024. 
 
 Nuraly Soltonbekov
